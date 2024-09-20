@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.fas, .far, .fal, .fab, .fa{
+    color: #1a4568; /* Change to your desired color */
+}
+
+.fa-white {
+    color: #1a4568;
+}
+
+.user-info:hover {
+    .fa-white {
+        color: white
+    }
+}
+
+.user-info {
+    border-radius: '10px'
+}
+
+.fa-userWhite {
+    color: white   
+}
