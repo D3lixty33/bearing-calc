@@ -18,7 +18,10 @@ module.exports = {
       margin: {
         '90' : '50%',
         '100': '67.8%',
-      }     
+      },
+      height: {
+        'h-1500' : '1500px'
+      }    
     },
   },
   plugins: [],

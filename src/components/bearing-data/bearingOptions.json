@@ -1,0 +1,36 @@
+[
+    {
+        "id": 1,
+        "type": "Sfere radiali",
+        "subtypes": [
+            "Deep Groove",
+            "Angular Contact",
+            "Self-aligning"
+        ]
+    },
+    {
+        "id": 2,
+        "type": "Sfere assiali",
+        "subtypes": [
+            "Cylindrical",
+            "Tapered",
+            "Spherical"
+        ]
+    },
+    {
+        "id": 3,
+        "type": "Rulli radiali",
+        "subtypes": [
+            "Ball Thrust",
+            "Roller Thrust"
+        ]
+    },
+    {
+        "id": 4,
+        "type": "Rulli assiali",
+        "subtypes": [
+            "Ball Thrust",
+            "Roller Thrust"
+        ]
+    }
+]

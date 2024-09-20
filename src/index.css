@@ -2,8 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-.fas, .far, .fal, .fab, .fa{
-    color: #1a4568; /* Change to your desired color */
+.fas,
+.far,
+.fal,
+.fab,
+.fa {
+    color: #1a4568;
+    /* Change to your desired color */
 }
 
 .fa-white {
@@ -21,5 +26,19 @@
 }
 
 .fa-userWhite {
-    color: white   
+    color: white
+}
+
+html {
+    height: -webkit-fill-available;
+    /* We have to fix html height */
+}
+
+body {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+}
+
+#root {
+    height: 100vh; 
 }

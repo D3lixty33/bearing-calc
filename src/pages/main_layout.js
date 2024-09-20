@@ -2,14 +2,22 @@ import React from "react";
 import Calculator from "../components/dashboard/calculator-page";
 import Sidebar from "../components/sidebar/sidebar";
 import Cascade from "../components/cascade-options/cascade";
+import { Box, Container } from "@mui/material";
+
 
 const Main = () => {
     return (
-        <div className="bg-slate-200 flex flex-row h-full max-h-screen">
-            <Sidebar></Sidebar>
-            <Calculator></Calculator>
+        <Container width= {'1280px'} >
+            <Box
+                width={'100%'}
+                height={'100%'}>
+                <div className="bg-slate-200 flex flex-row h-full w-full">
+                    <Sidebar></Sidebar>
+                    <Calculator></Calculator>
 
-        </div>
+                </div>
+            </Box>
+        </Container>
     )
 }
 

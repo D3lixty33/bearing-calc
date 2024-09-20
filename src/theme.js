@@ -66,8 +66,24 @@ const theme = createTheme({
                     },
                 }
             }
-        }
-    }, // Closing bracket for components
+        },
+        MuiContainer: {
+            styleOverrides: {
+                root: {
+                    padding: '0px',
+                    margin: '0px',
+                    '@media (min-width: 600px)': {
+                        paddingLeft: '0px',
+                        paddingRight: '0px',
+                    },
+                    '@media (min-width: 1200px)': {
+                        maxWidth: '100%',
+                    },
+                    minHeight: '800px'
+                }
+            }
+        },
+    } // Closing bracket for components
 }); // Closing bracket for createTheme
 
 export default theme;
