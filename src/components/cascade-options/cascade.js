@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import { Box, Drawer, FormControl, InputLabel, MenuItem, Select, Typography, Button } from '@mui/material';
-import { create, all } from 'mathjs';
-
-const math = create(all);
+import { interp1 } from '../functions/interpolation'; // Import the interp1 function
 
 const bearingOptions = {
     'Sfere radiali': ['Deep Groove', 'Angular Contact', 'Self-aligning'],
@@ -14,12 +12,16 @@ const bearingOptions = {
 const Cascade = () => {
     const [bearingType, setBearingType] = useState('');
     const [bearingSubtype, setBearingSubtype] = useState('');
-    const [result, setResult] = useState(null); // State to store the result
+    const [result, setResult] = useState(null);
+
+    // Known data points for interpolation (example)
+    const x_known = [0, 1, 2, 3, 4, 5];
+    const y_known = [0, 1, 4, 9, 16, 25];
 
     const calculate = () => {
-        const expression = '2 * (3 + 4)';
-        const result = math.evaluate(expression); // Evaluate any math expression
-        setResult(result); // Update the result state
+        const x_interp = 2.5; // Example point to interpolate
+        const interpolatedValue = interp1(x_known, y_known, x_interp);
+        setResult(interpolatedValue); // Set the result to display
     };
 
     const handleBearingChange = (event) => {
@@ -66,18 +68,16 @@ const Cascade = () => {
                     </Typography>
                 )}
 
-                <div style={{ marginTop: '20px' }}>
-                    <Button variant="outlined" onClick={calculate}>Calculate</Button>
-                </div>
+                <Button variant="contained" onClick={calculate} className="w-32">Calculate</Button>
 
                 {result !== null && (
                     <Typography variant="body1" sx={{ marginTop: 2 }}>
-                        Calculation result: {result}
+                        Interpolated Value: {result}
                     </Typography>
                 )}
             </Box>
         </Drawer>
-    )
-};
+    );
+}
 
 export default Cascade;
