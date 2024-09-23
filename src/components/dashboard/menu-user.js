@@ -8,7 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 
 const MenuUser = () => {
     return (
-        <Paper sx={{ width: 320 }}>
+        <Paper sx={{ width: 320 }} className="z-20 absolute">
             <MenuList dense>
                 <MenuItem>
                     <ListItemText inset>Single</ListItemText>

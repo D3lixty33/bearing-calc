@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Box, InputBase, Button } from "@mui/material";
-import Cascade from "../cascade-options/cascade";
 import MenuUser from "./menu-user"; // Custom component you want to render
 import BearingData from "../bearing-data/bearingData";
+import Result from "../results/input";
 
 const Calculator = () => {
     // State to manage the visibility of the MenuUser component
@@ -43,12 +43,20 @@ const Calculator = () => {
                 <div className="w-full mt-2">
                     <div className="absolute ml-90">
                         {open && <MenuUser />} {/* Conditionally render MenuUser */}
+                        <div className="mt-10 w-full">
+
+                        </div>
                     </div>
                 </div>
-                
-                <div className="w-80 mt-10">
+
+                <div className="w-80 mt-10 flex flex-row">
                     <BearingData></BearingData>
+                    <div className="h-80 ml-64">
+                        <Result />
+                    </div>
                 </div>
+
+
 
             </Box>
         </div>

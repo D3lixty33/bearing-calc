@@ -1,12 +1,23 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Drawer, FormControl, InputLabel, MenuItem, Select, Typography, TextField, InputAdornment } from '@mui/material';
+import { Box, Drawer, FormControl, InputLabel, MenuItem, Select, Typography, TextField, InputAdornment, Button } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faRulerHorizontal, faRulerVertical, faAngleDoubleRight, faCrown } from '@fortawesome/free-solid-svg-icons';
 import bearingOptionsData from './bearingOptions.json'; // Adjust path if necessary
+import { sfereRadiali } from '../functions/sfereRadiali';
 
 const BearingData = () => {
     const [bearingOptions, setBearingOptions] = useState([]);
     const [bearingType, setBearingType] = useState('');
+
+    // Define state variables for each input
+    const [nominalDiameter, setNominalDiameter] = useState('');
+    const [innerDiameter, setInnerDiameter] = useState('');
+    const [outerDiameter, setOuterDiameter] = useState('');
+    const [contactAngle, setContactAngle] = useState('');
+    const [numberOfCrowns, setNumberOfCrowns] = useState('');
+    const [crownsPerSphere, setCrownsPerSphere] = useState('');
+    const [numberOfRollersPerCrown, setNumberOfRollersPerCrown] = useState('');
+    const [rollerLoadCapacity, setRollerLoadCapacity] = useState('');
 
     useEffect(() => {
         setBearingOptions(bearingOptionsData);
@@ -20,27 +31,45 @@ const BearingData = () => {
     const getPlaceholders = () => {
         if (bearingType.startsWith('Rulli')) {
             return {
-                nominalDiameter: "Ulteriori dimensioni Rulli:",
-                innerDiameter: "Diametro interno Rulli:",
-                outerDiameter: "Diametro esterno Rulli:",
-                contactAngle: "Angolo di contatto Rulli:",
-                numberOfCrowns: "Numero corone di Rulli:",
-                crownsPerSphere: "Numero corone per sfera Rulli:"
+                nominalDiameter: "Diametro nominale rulli:",
+                innerDiameter: "Lunghezza rullino:",
+                outerDiameter: "Diametro interno:",
+                contactAngle: "Diametro esterno:",
+                numberOfCrowns: "Angolo di contatto:",
+                crownsPerSphere: "Numero corone di rulli:"
             };
         } else if (bearingType.startsWith('Sfere')) {
             return {
                 nominalDiameter: "Diametro nominale sfere:",
-                innerDiameter: "Diametro interno sfere:",
-                outerDiameter: "Diametro esterno sfere:",
-                contactAngle: "Angolo di contatto sfere:",
-                numberOfCrowns: "Numero corone di sfere:",
-                crownsPerSphere: "Numero corone per sfera sfere:"
+                innerDiameter: "Diametro interno:",
+                outerDiameter: "Diametro esterno:",
+                contactAngle: "Angolo di contatto:",
+                numberOfCrowns: "Numero corone sfere:",
+                crownsPerSphere: "Numero corone sfere per corona:"
             };
         }
         return {};
     };
 
     const placeholders = getPlaceholders();
+
+    async function CalculateBearing() {
+        const dpw = Math.floor((parseFloat(innerDiameter) + parseFloat(outerDiameter)) / 2 * 10) / 10; // Keep 1 decimal place
+        // Use the state values
+
+
+        switch (true) {
+            case bearingType.startsWith('Sfere radiali'):
+                sfereRadiali(dpw, nominalDiameter, contactAngle, numberOfCrowns, crownsPerSphere);
+                break;
+
+            default:
+                console.log("Unknown bearing type");
+                break;
+        }
+        // You can now use the stored values for any calculations or API calls
+        // Add your logic here
+    }
 
     return (
         <Drawer variant="permanent">
@@ -64,6 +93,8 @@ const BearingData = () => {
                             <TextField
                                 type="number"
                                 placeholder={placeholders.nominalDiameter}
+                                value={nominalDiameter}
+                                onChange={(e) => setNominalDiameter(e.target.value)}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -78,6 +109,8 @@ const BearingData = () => {
                             <TextField
                                 type="number"
                                 placeholder={placeholders.innerDiameter}
+                                value={innerDiameter}
+                                onChange={(e) => setInnerDiameter(e.target.value)}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -92,6 +125,8 @@ const BearingData = () => {
                             <TextField
                                 type="number"
                                 placeholder={placeholders.outerDiameter}
+                                value={outerDiameter}
+                                onChange={(e) => setOuterDiameter(e.target.value)}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -106,6 +141,8 @@ const BearingData = () => {
                             <TextField
                                 type="number"
                                 placeholder={placeholders.contactAngle}
+                                value={contactAngle}
+                                onChange={(e) => setContactAngle(e.target.value)}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -120,6 +157,8 @@ const BearingData = () => {
                             <TextField
                                 type="number"
                                 placeholder={placeholders.numberOfCrowns}
+                                value={numberOfCrowns}
+                                onChange={(e) => setNumberOfCrowns(e.target.value)}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -134,6 +173,8 @@ const BearingData = () => {
                             <TextField
                                 type="number"
                                 placeholder={placeholders.crownsPerSphere}
+                                value={crownsPerSphere}
+                                onChange={(e) => setCrownsPerSphere(e.target.value)}
                                 InputProps={{
                                     startAdornment: (
                                         <InputAdornment position="start">
@@ -150,7 +191,9 @@ const BearingData = () => {
                                 <FormControl fullWidth margin="normal">
                                     <TextField
                                         type="number"
-                                        placeholder="Ulteriori dimensioni Rulli:"
+                                        placeholder="Numero rulli per corona:"
+                                        value={numberOfRollersPerCrown}
+                                        onChange={(e) => setNumberOfRollersPerCrown(e.target.value)}
                                         InputProps={{
                                             startAdornment: (
                                                 <InputAdornment position="start">
@@ -165,6 +208,8 @@ const BearingData = () => {
                                     <TextField
                                         type="number"
                                         placeholder="Capacità di carico Rulli:"
+                                        value={rollerLoadCapacity}
+                                        onChange={(e) => setRollerLoadCapacity(e.target.value)}
                                         InputProps={{
                                             startAdornment: (
                                                 <InputAdornment position="start">
@@ -176,6 +221,8 @@ const BearingData = () => {
                                 </FormControl>
                             </>
                         ) : null}
+
+                        <Button onClick={CalculateBearing}>Calculate</Button>
                     </>
                 )}
 
