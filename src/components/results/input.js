@@ -1,27 +1,55 @@
 import React from "react";
-import { 
-    TextField,
-    Table,
-    TableContainer
+import { TextField } from "@mui/material";
 
- } from "@mui/material";
-import { Virtuoso } from "react-virtuoso";
-
-const Result = (Cr0) => {
+const Result = () => {
+    //if (!results) return null; // Handle case when results are not available
 
     return (
         <div className="w-96 bg-white shadow-[rgba(149,157,165,0.2)_0px_8px_24px] rounded-lg">
-            <TextField 
+            <TextField
                 inputMode="number"
-                placeholder="Cr0"
-            ></TextField>
-            <TextField 
+                placeholder="C0r"
+
+                disabled
+            />
+            <TextField
                 inputMode="number"
-                placeholder="Cr"
-                margin="normal"
-            ></TextField>
+                placeholder="F0"
+
+                disabled
+            />
+            <TextField
+                inputMode="number"
+                placeholder="f0"
+
+                disabled
+            />
+            <TextField
+                inputMode="number"
+                placeholder="i"
+
+                disabled
+            />
+            <TextField
+                inputMode="number"
+                placeholder="Z"
+
+                disabled
+            />
+            <TextField
+                inputMode="number"
+                placeholder="dw"
+
+                disabled
+            />
+            <TextField
+                inputMode="number"
+                placeholder="cosdAlfa"
+
+                disabled
+            />
         </div>
-    )
-}
+    );
+};
 
 export default Result;

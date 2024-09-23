@@ -29,9 +29,8 @@ export const sfereRadiali = (dpw, nominalDiameter, contactAngle, numberOfCrowns,
     // Perform interpolation using the calculated F0
     const f0 = interp1(XF0, YF0, F0, 'linear', 'extrap');
 
-    const C0r = f0*i*Z*dw^2*cosdAlfa;
+    const C0r = (f0 * i * Z * Math.pow(dw, 2) * cosdAlfa);
 
-    
 
     console.log(`F0: ${F0}`);
     console.log('i: ' + i);
@@ -44,7 +43,16 @@ export const sfereRadiali = (dpw, nominalDiameter, contactAngle, numberOfCrowns,
     console.log('Array XF0: ' + XF0);
     console.log('Array YF0: ' + YF0);
     console.log('C0r: ' + C0r);
-    console.log('dpw: ' + dpw)
+    console.log('dpw: ' + dpw);
 
-    return (C0r);
+
+    return {
+        C0r,
+        F0,
+        f0,
+        i,
+        Z,
+        dw,
+        cosdAlfa
+    };
 };

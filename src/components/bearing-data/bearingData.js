@@ -2,14 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { Box, Drawer, FormControl, InputLabel, MenuItem, Select, Typography, TextField, InputAdornment, Button } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faRulerHorizontal, faRulerVertical, faAngleDoubleRight, faCrown } from '@fortawesome/free-solid-svg-icons';
-import bearingOptionsData from './bearingOptions.json'; // Adjust path if necessary
+import bearingOptionsData from './bearingOptions.json';
 import { sfereRadiali } from '../functions/sfereRadiali';
+import Result from '../results/input';
 
 const BearingData = () => {
     const [bearingOptions, setBearingOptions] = useState([]);
     const [bearingType, setBearingType] = useState('');
 
-    // Define state variables for each input
+    // State variables for inputs
     const [nominalDiameter, setNominalDiameter] = useState('');
     const [innerDiameter, setInnerDiameter] = useState('');
     const [outerDiameter, setOuterDiameter] = useState('');
@@ -19,6 +20,9 @@ const BearingData = () => {
     const [numberOfRollersPerCrown, setNumberOfRollersPerCrown] = useState('');
     const [rollerLoadCapacity, setRollerLoadCapacity] = useState('');
 
+    // State to hold calculation results
+    const [calculationResults, setCalculationResults] = useState(null);
+
     useEffect(() => {
         setBearingOptions(bearingOptionsData);
     }, []);
@@ -27,7 +31,6 @@ const BearingData = () => {
         setBearingType(event.target.value);
     };
 
-    // Determine placeholders based on bearing type
     const getPlaceholders = () => {
         if (bearingType.startsWith('Rulli')) {
             return {
@@ -55,20 +58,17 @@ const BearingData = () => {
 
     async function CalculateBearing() {
         const dpw = Math.floor((parseFloat(innerDiameter) + parseFloat(outerDiameter)) / 2 * 10) / 10; // Keep 1 decimal place
-        // Use the state values
-
 
         switch (true) {
             case bearingType.startsWith('Sfere radiali'):
-                sfereRadiali(dpw, nominalDiameter, contactAngle, numberOfCrowns, crownsPerSphere);
+                const C0r = sfereRadiali(dpw, nominalDiameter, contactAngle, numberOfCrowns, crownsPerSphere);
+                setCalculationResults({ C0r }); // Update state with results
                 break;
 
             default:
                 console.log("Unknown bearing type");
                 break;
         }
-        // You can now use the stored values for any calculations or API calls
-        // Add your logic here
     }
 
     return (
@@ -231,6 +231,7 @@ const BearingData = () => {
                         Please select a bearing type to continue.
                     </Typography>
                 )}
+
             </Box>
         </Drawer>
     );

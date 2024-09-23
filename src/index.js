@@ -5,7 +5,6 @@ import {
     RouterProvider
 } from "react-router-dom";
 import Main from './pages/main_layout';
-import Cascade from './components/cascade-options/cascade';
 import './index.css';
 import { ThemeProvider } from '@mui/material';
 import theme from './theme'
