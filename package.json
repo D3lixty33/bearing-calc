@@ -36,6 +36,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@mui/material": "^6.1.0",
+    "fs": "^0.0.1-security",
     "mathjs": "^13.1.1",
     "postcss": "^8.4.47",
     "react": "^18.3.1",

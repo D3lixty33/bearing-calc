@@ -4,9 +4,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faRulerHorizontal, faRulerVertical, faAngleDoubleRight, faCrown } from '@fortawesome/free-solid-svg-icons';
 import bearingOptionsData from './bearingOptions.json';
 import { sfereRadiali } from '../functions/sfereRadiali';
-import Result from '../results/input';
+import DenseTable from '../results/input';
+import { useBearing } from './bearing-context';
+import { exportToJsonFile } from '../functions/utils';  // Import the export function
 
-const BearingData = () => {
+const BearingData = ({ onResultsCalculated }) => {
     const [bearingOptions, setBearingOptions] = useState([]);
     const [bearingType, setBearingType] = useState('');
 
@@ -59,10 +61,14 @@ const BearingData = () => {
     async function CalculateBearing() {
         const dpw = Math.floor((parseFloat(innerDiameter) + parseFloat(outerDiameter)) / 2 * 10) / 10; // Keep 1 decimal place
 
+        let results;
+
         switch (true) {
             case bearingType.startsWith('Sfere radiali'):
-                const C0r = sfereRadiali(dpw, nominalDiameter, contactAngle, numberOfCrowns, crownsPerSphere);
-                setCalculationResults({ C0r }); // Update state with results
+                results = sfereRadiali(dpw, nominalDiameter, contactAngle, numberOfCrowns, crownsPerSphere);
+                setCalculationResults(results); // Save results in state
+                onResultsCalculated(results);
+                //exportToJsonFile(results, 'bearingOptions'); // Export the results to a JSON file
                 break;
 
             default:
@@ -231,7 +237,6 @@ const BearingData = () => {
                         Please select a bearing type to continue.
                     </Typography>
                 )}
-
             </Box>
         </Drawer>
     );

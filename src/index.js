@@ -8,6 +8,7 @@ import Main from './pages/main_layout';
 import './index.css';
 import { ThemeProvider } from '@mui/material';
 import theme from './theme'
+import { BearingProvider } from './components/bearing-data/bearing-context';
 
 
 const router = createBrowserRouter([
@@ -18,9 +19,11 @@ const router = createBrowserRouter([
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
-    <ThemeProvider theme={theme}>
-        <React.StrictMode>
-            <RouterProvider router={router} />
-        </React.StrictMode>
-    </ThemeProvider>
+    <BearingProvider>
+        <ThemeProvider theme={theme}>
+            <React.StrictMode>
+                <RouterProvider router={router} />
+            </React.StrictMode>
+        </ThemeProvider>
+    </BearingProvider>
 )

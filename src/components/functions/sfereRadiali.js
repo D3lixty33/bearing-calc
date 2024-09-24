@@ -45,14 +45,14 @@ export const sfereRadiali = (dpw, nominalDiameter, contactAngle, numberOfCrowns,
     console.log('C0r: ' + C0r);
     console.log('dpw: ' + dpw);
 
-
-    return {
+    let result = {
         C0r,
         F0,
         f0,
-        i,
-        Z,
-        dw,
+        numberOfCrowns: i,
+        crownsPerSphere: Z,
+        nominalDiameter: dw,
         cosdAlfa
     };
+    return result;
 };
