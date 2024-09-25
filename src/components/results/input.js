@@ -17,12 +17,14 @@ export default function DenseTable({ results }) {
     // Prepare rows based on the results
     const rows = [
         createData('C0r', results?.C0r || 'N/A'),
-        createData('F0', results?.F0 || 'N/A'),
+        createData('Cr', results?.Cr || 'N/A'),
+
+        /*createData('F0', results?.F0 || 'N/A'),
         createData('f0', results?.f0 || 'N/A'),
         createData('Number of Crowns', results?.numberOfCrowns || 'N/A'),
         createData('Crowns per Sphere', results?.crownsPerSphere || 'N/A'),
         createData('Nominal Diameter', results?.nominalDiameter || 'N/A'),
-        createData('Cosine of Alpha', results?.cosdAlfa || 'N/A'),
+        createData('Cosine of Alpha', results?.cosdAlfa || 'N/A'),*/
     ];
 
     return (

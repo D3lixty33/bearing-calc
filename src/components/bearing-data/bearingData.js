@@ -4,9 +4,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircle, faRulerHorizontal, faRulerVertical, faAngleDoubleRight, faCrown } from '@fortawesome/free-solid-svg-icons';
 import bearingOptionsData from './bearingOptions.json';
 import { sfereRadiali } from '../functions/sfereRadiali';
-import DenseTable from '../results/input';
-import { useBearing } from './bearing-context';
-import { exportToJsonFile } from '../functions/utils';  // Import the export function
+import { sfereAssiali } from '../functions/sfereAssiali';
+import { rulliRadiali } from '../functions/rulliRadiali';
+// import { useBearing } from './bearing-context';
+// import { exportToJsonFile } from '../functions/utils';   Import the export function
 
 const BearingData = ({ onResultsCalculated }) => {
     const [bearingOptions, setBearingOptions] = useState([]);
@@ -70,6 +71,16 @@ const BearingData = ({ onResultsCalculated }) => {
                 onResultsCalculated(results);
                 //exportToJsonFile(results, 'bearingOptions'); // Export the results to a JSON file
                 break;
+
+            case bearingType.startsWith('Sfere assiali'):
+                results = sfereAssiali(dpw, nominalDiameter, contactAngle, numberOfCrowns, crownsPerSphere);
+                setCalculationResults(results);
+                onResultsCalculated(results);
+
+            case bearingType.startsWith('Rulli radiali'):
+                results = rulliRadiali(dpw, nominalDiameter, contactAngle, numberOfCrowns, crownsPerSphere, numberOfRollersPerCrown, rollerLoadCapacity);
+                setCalculationResults(results);
+                onResultsCalculated(results);
 
             default:
                 console.log("Unknown bearing type");

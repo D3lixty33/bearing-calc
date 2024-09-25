@@ -6,7 +6,7 @@ import { Box, Container } from "@mui/material";
 
 const Main = () => {
     return (
-        <Container width= {'1280px'} >
+        <Container >
             <Box
                 width={'100%'}
                 height={'100%'}>
