@@ -5,8 +5,8 @@ import {
     RouterProvider
 } from "react-router-dom";
 import Main from './pages/main_layout';
-import Settings from './components/settings/settingsPage';
-import Calculator from './components/dashboard/calculator-page';
+import Settings from './pages/settings/settingsPage';
+import Calculator from './pages/calculator/calculator-page';
 import './index.css';
 import { ThemeProvider } from '@mui/material';
 import theme from './theme'

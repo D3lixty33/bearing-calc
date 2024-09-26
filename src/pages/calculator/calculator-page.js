@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Box, InputBase, Button } from "@mui/material";
 import MenuUser from "./menu-user"; // Custom component you want to render
-import BearingData from "../bearing-data/bearingData";
-import Result from "../results/input";
+import BearingData from "../../components/bearing-data/bearingData";
+import Result from "../../components/results/input";
+import Graph from "../../components/graph-results/graph";
 
 const Calculator = () => {
     // State to manage the visibility of the MenuUser component
@@ -28,7 +29,7 @@ const Calculator = () => {
                 padding={'20px'}
                 height={'100%'}
             >
-                <div className="border-slate-300 border w-11/12 h-10 flex-row flex p-4 items-center bg-white rounded-xl">
+                <div className="border-slate-100 border w-11/12 h-10 flex-row flex p-4 items-center bg-white rounded-xl">
                     <button className="rounded-lg items-center flex hover:">
                         <i className="fas fa-solid fa-magnifying-glass mr-4"></i>
                     </button>
@@ -41,7 +42,7 @@ const Calculator = () => {
                     </div>
                 </div>
                 <div className="w-full mt-2">
-                    <div className="absolute ml-90">
+                    <div className="inherit ml-90">
                         {open && <MenuUser />} {/* Conditionally render MenuUser */}
                     </div>
                 </div>
@@ -49,9 +50,10 @@ const Calculator = () => {
                 <div className="w-80 mt-10 flex flex-row">
                     {/* Pass the handleResultsCalculated function as a prop */}
                     <BearingData onResultsCalculated={handleResultsCalculated} />
-                    <div className="h-80 ml-16">
+                    <div className="h-80 ml-16 flex flex-col">
                         {/* Pass the calculation results to Result component */}
                         <Result results={calculationResults} />
+                        <Graph results={calculationResults}></Graph>
                     </div>
                 </div>
             </Box>

@@ -21,7 +21,7 @@ const BearingData = ({ onResultsCalculated }) => {
     const [numberOfCrowns, setNumberOfCrowns] = useState('');
     const [crownsPerSphere, setCrownsPerSphere] = useState('');
     const [numberOfRollersPerCrown, setNumberOfRollersPerCrown] = useState('');
-    const [rollerLoadCapacity, setRollerLoadCapacity] = useState('');
+    const [rollerType, setRollerType] = useState('');
 
     // State to hold calculation results
     const [calculationResults, setCalculationResults] = useState(null);
@@ -33,6 +33,10 @@ const BearingData = ({ onResultsCalculated }) => {
     const handleBearingChange = (event) => {
         setBearingType(event.target.value);
     };
+
+    const handleRollerType = (event) => {
+        setRollerType(event.target.value)
+    }
 
     const getPlaceholders = () => {
         if (bearingType.startsWith('Rulli')) {
@@ -79,10 +83,10 @@ const BearingData = ({ onResultsCalculated }) => {
                 onResultsCalculated(results);
                 console.log('Test assiali: ' + results.Cr)
 
-            //case bearingType.startsWith('Rulli radiali'):
-             //   results = rulliRadiali(dpw, nominalDiameter, contactAngle, numberOfCrowns, crownsPerSphere, numberOfRollersPerCrown, rollerLoadCapacity);
-              //  setCalculationResults(results);  E' commentato perché essendo incompleto va ad intaccare il flusso di tutto lo switch e smette di far funzionare correttamente sfereAssiali che non passano più i dati alla tabella anche se eseguono i calcoli in background
-               // onResultsCalculated(results);
+            case bearingType.startsWith('Rulli radiali'):
+                results = rulliRadiali(dpw, nominalDiameter, innerDiameter, outerDiameter, contactAngle, numberOfCrowns, crownsPerSphere, numberOfRollersPerCrown, rollerType);
+                setCalculationResults(results); " E' commentato perché essendo incompleto va ad intaccare il flusso di tutto lo switch e smette di far funzionare correttamente sfereAssiali che non passano più i dati alla tabella anche se eseguono i calcoli in background."
+                onResultsCalculated(results);
 
             default:
                 console.log("Unknown bearing type");
@@ -216,7 +220,7 @@ const BearingData = ({ onResultsCalculated }) => {
                                         InputProps={{
                                             startAdornment: (
                                                 <InputAdornment position="start">
-                                                    <FontAwesomeIcon icon={faRulerHorizontal} />
+                                                    <FontAwesomeIcon icon={faCrown} />
                                                 </InputAdornment>
                                             ),
                                         }}
@@ -224,19 +228,16 @@ const BearingData = ({ onResultsCalculated }) => {
                                 </FormControl>
 
                                 <FormControl fullWidth margin="normal">
-                                    <TextField
-                                        type="number"
-                                        placeholder="Capacità di carico Rulli:"
-                                        value={rollerLoadCapacity}
-                                        onChange={(e) => setRollerLoadCapacity(e.target.value)}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <FontAwesomeIcon icon={faCrown} />
-                                                </InputAdornment>
-                                            ),
-                                        }}
-                                    />
+                                    <InputLabel>Tipo di rullo:</InputLabel>
+                                    <Select
+                                        value={rollerType}
+                                        onChange={handleRollerType}
+                                    >
+                                        <MenuItem value={'Rullo cilindrico'}>Rullo cilindrico</MenuItem>
+                                        <MenuItem value={'Rullo conico'}>Rullo conico</MenuItem>
+                                        <MenuItem value={'Rullo a botte'}>Rullo a botte</MenuItem>
+                                    </Select>
+                                    
                                 </FormControl>
                             </>
                         ) : null}

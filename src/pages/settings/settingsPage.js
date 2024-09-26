@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Box, Container } from "@mui/material";
-import Sidebar from "../sidebar/sidebar";
+import Sidebar from "../../components/sidebar/sidebar";
 
 const Settings = () => {
     return (

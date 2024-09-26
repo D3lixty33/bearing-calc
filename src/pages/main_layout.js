@@ -1,7 +1,8 @@
 import React from "react";
-import Calculator from "../components/dashboard/calculator-page";
+import Calculator from "./calculator/calculator-page";
 import Sidebar from "../components/sidebar/sidebar";
 import { Box, Container } from "@mui/material";
+import Graph from "../components/graph-results/graph";
 
 
 const Main = () => {
