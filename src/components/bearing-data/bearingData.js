@@ -69,6 +69,7 @@ const BearingData = ({ onResultsCalculated }) => {
                 results = sfereRadiali(dpw, nominalDiameter, contactAngle, numberOfCrowns, crownsPerSphere);
                 setCalculationResults(results); // Save results in state
                 onResultsCalculated(results);
+                console.log('Test radiali: ' + results.Cr)
                 //exportToJsonFile(results, 'bearingOptions'); // Export the results to a JSON file
                 break;
 
@@ -76,11 +77,12 @@ const BearingData = ({ onResultsCalculated }) => {
                 results = sfereAssiali(dpw, nominalDiameter, contactAngle, numberOfCrowns, crownsPerSphere);
                 setCalculationResults(results);
                 onResultsCalculated(results);
+                console.log('Test assiali: ' + results.Cr)
 
-            case bearingType.startsWith('Rulli radiali'):
-                results = rulliRadiali(dpw, nominalDiameter, contactAngle, numberOfCrowns, crownsPerSphere, numberOfRollersPerCrown, rollerLoadCapacity);
-                setCalculationResults(results);
-                onResultsCalculated(results);
+            //case bearingType.startsWith('Rulli radiali'):
+             //   results = rulliRadiali(dpw, nominalDiameter, contactAngle, numberOfCrowns, crownsPerSphere, numberOfRollersPerCrown, rollerLoadCapacity);
+              //  setCalculationResults(results);  E' commentato perché essendo incompleto va ad intaccare il flusso di tutto lo switch e smette di far funzionare correttamente sfereAssiali che non passano più i dati alla tabella anche se eseguono i calcoli in background
+               // onResultsCalculated(results);
 
             default:
                 console.log("Unknown bearing type");

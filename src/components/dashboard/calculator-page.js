@@ -20,16 +20,15 @@ const Calculator = () => {
     const handleResultsCalculated = (results) => {
         setCalculationResults(results);
     };
-
     return (
-        <div className="w-9/12 h-auto">
+        
             <Box
-                marginLeft={'20px'}
+                marginLeft={'60px'}
                 width={'100%'}
                 padding={'20px'}
                 height={'100%'}
             >
-                <div className="border-slate-300 border w-full h-10 flex-row flex p-4 items-center bg-white rounded-xl">
+                <div className="border-slate-300 border w-11/12 h-10 flex-row flex p-4 items-center bg-white rounded-xl">
                     <button className="rounded-lg items-center flex hover:">
                         <i className="fas fa-solid fa-magnifying-glass mr-4"></i>
                     </button>
@@ -56,7 +55,7 @@ const Calculator = () => {
                     </div>
                 </div>
             </Box>
-        </div>
+        
     );
 };
 

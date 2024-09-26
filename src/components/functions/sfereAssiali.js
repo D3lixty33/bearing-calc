@@ -111,5 +111,6 @@ export const sfereAssiali = (dpw, nominalDiameter, contactAngle, numberOfCrowns,
     console.log('YFc: ' + YFc)
 
     // Return the results if needed
+
     return { C0r, Cr, F0, f0, numberOfCrowns: i, crownsPerSphere: Z, nominalDiameter: dw };
 };

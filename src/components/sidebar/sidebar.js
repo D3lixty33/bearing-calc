@@ -2,19 +2,17 @@ import React from "react";
 import '@fortawesome/fontawesome-free/css/all.min.css';
 import { Button } from "@mui/material";
 import Logo from '../../assets/side-logo/Logo-blu.jpg'; // Ensure correct path
-import { Link } from "@mui/material";
+import { Link as RouterLink } from 'react-router-dom'; // Import Link from react-router-dom
+import { Link as MuiLink } from '@mui/material'; // Import Link from Material-UI
 import Cascade from "../cascade-options/cascade";
-
-const cascade = <Cascade></Cascade>
-
 
 const Sidebar = () => {
     return (
-        <div className="flex flex-col w-72 h-full text-base justify-center shadow-xl bg-white"> {/* Use shadow utility */}
+        <div className="flex flex-col w-72 h-full text-base justify-center shadow-xl bg-white">
             <div>
-                <div className="flex items-center mb-4 ">
-                    <img src={Logo} alt="Error 404 Not Found" />
-                </div>                
+                <div className="flex items-center mb-4">
+                    <img src={Logo} alt="Logo" />
+                </div>
                 <div className="flex items-center mb-4 ml-4">
                     <div className="flex text-start w-6/12 justify-center">
                         <Button>Cronologia</Button>
@@ -33,7 +31,9 @@ const Sidebar = () => {
                 </div>
                 <div className="flex items-center mb-4 ml-4">
                     <div className="flex text-start w-6/12 justify-center">
-                        <Button>Impostazioni</Button>
+                        <MuiLink component={RouterLink} to="/settings" style={{ textDecoration: 'none' }}>
+                            <Button>Impostazioni</Button>
+                        </MuiLink>
                     </div>
                     <div className="flex text-end w-6/12 justify-center">
                         <p><i className="fas fa-solid fa-gear"></i></p>
@@ -41,7 +41,9 @@ const Sidebar = () => {
                 </div>
                 <div className="flex items-center mb-4 ml-4">
                     <div className="flex text-start w-6/12 justify-center">
-                        <Button>Calcolatore</Button>
+                        <MuiLink component={RouterLink} to="/calculator-page" style={{ textDecoration: 'none' }}>
+                            <Button>Calcolatore</Button>
+                        </MuiLink>
                     </div>
                     <div className="flex text-end w-6/12 justify-center">
                         <p><i className="fas fa-solid fa-calculator"></i></p>
